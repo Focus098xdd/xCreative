@@ -32,7 +32,7 @@ public class main extends JavaPlugin implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative]" + ChatColor.WHITE + "This command can only be used by players!");
+            sender.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative] " + ChatColor.WHITE + "This command can only be used by players!");
             return true;
         }
 
@@ -41,13 +41,13 @@ public class main extends JavaPlugin implements CommandExecutor {
         // Get the creative world
         World creativeWorld = Bukkit.getWorld("creative");
         if (creativeWorld == null) {
-            player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative]" + ChatColor.WHITE + "Creative world not found! Creating it now...");
+            player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative] " + ChatColor.WHITE + "Creative world not found! Creating it now...");
             WorldCreator creator = new WorldCreator("creative");
             creator.type(WorldType.FLAT);
             creator.generateStructures(false);
             creativeWorld = Bukkit.createWorld(creator);
             if (creativeWorld == null) {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative]" + ChatColor.WHITE + "Failed to create creative world!");
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative] " + ChatColor.WHITE + "Failed to create creative world!");
                 return true;
             }
             // Disable mob spawning in the creative world
@@ -59,10 +59,10 @@ public class main extends JavaPlugin implements CommandExecutor {
         // Get the main world (assume it's called "world")
         World mainWorld = Bukkit.getWorld("world");
         if (mainWorld == null) {
-            player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative]" + ChatColor.WHITE + "Main world not found! Creating it now...");
+            player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative] " + ChatColor.WHITE + "Main world not found! Creating it now...");
             mainWorld = Bukkit.createWorld(new WorldCreator("world"));
             if (mainWorld == null) {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative]" + ChatColor.WHITE + "Failed to create main world!");
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative] " + ChatColor.WHITE + "Failed to create main world!");
                 return true;
             }
         }
@@ -82,12 +82,12 @@ public class main extends JavaPlugin implements CommandExecutor {
             if (previous != null) {
                 player.teleport(previous);
                 player.setGameMode(GameMode.SURVIVAL);
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative]" + ChatColor.WHITE + "Returned to your previous location!");
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative] " + ChatColor.WHITE + "Returned to your previous location!");
                 previousLocations.remove(player.getUniqueId());
             } else {
                 player.teleport(mainWorld.getSpawnLocation());
                 player.setGameMode(GameMode.SURVIVAL);
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative]" + ChatColor.WHITE + "No previous location found. Teleported to the main world!");
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative] " + ChatColor.WHITE + "No previous location found. Teleported to the main world!");
             }
         } else {
             // Save survival inventory
@@ -102,7 +102,7 @@ public class main extends JavaPlugin implements CommandExecutor {
             previousLocations.put(player.getUniqueId(), player.getLocation());
             player.teleport(creativeWorld.getSpawnLocation());
             player.setGameMode(GameMode.CREATIVE);
-            player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative]" + ChatColor.WHITE + "Teleported to the creative world!");
+            player.sendMessage(ChatColor.LIGHT_PURPLE + "[xCreative] " + ChatColor.WHITE + "Teleported to the creative world!");
         }
         return true;
     }
