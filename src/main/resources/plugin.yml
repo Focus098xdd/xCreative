@@ -1,0 +1,8 @@
+name: xCreative
+main: net.xstudio.xcreative.main
+version: LTS
+api-version: 1.15
+commands:
+  cr:
+    description: Teleports player to the creative world
+    usage: /cr
